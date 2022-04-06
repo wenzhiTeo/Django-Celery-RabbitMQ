@@ -83,3 +83,29 @@ result = `[2022-04-05 11:57:59,087: INFO/MainProcess] Scheduler: Sending due tas
 **OR**  
 let the celery beat run the the scheduler set in database  
 `celery -A project beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler`
+
+
+## Store the Celery result
+`pip install django-celery-results`  
+and `CELERY_RESULT_BACKEND = 'django-db'` to settings.py
+
+## Cache Celery result
+```
+CELERY_CACHE_BACKEND='default'
+
+CACHES={
+    'dafault':{
+        'BACKEND':'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION':'cachedb',
+    }
+}
+
+```  
+
+show sql code  
+`python manage.py createcachetable --dry-run`  
+create table
+`python manage.py createcachetable`  
+
+WSL2 environment need to install sqlite
+`sudo apt install sqlite`
