@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_celery_beat",
+    "django_celery_results",
     "app1",
     "app2",
     "app3",
@@ -137,6 +138,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "hellologomy@gmail.com"
 
+
+CELERY_RESULT_BACKEND = "django-db"
 CELERY_BROKER_URL = os.getenv("REDIS_URI")
 
 CELERY_BEAT_SCHEDULE = {
@@ -146,3 +149,13 @@ CELERY_BEAT_SCHEDULE = {
         "args": (10, 10),
     },
 }
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "cachedb",
+    }
+}
+
+CELERY_CACHE_BACKEND = "default"
