@@ -103,9 +103,9 @@ CACHES={
 ```  
 
 show sql code  
-`python manage.py createcachetable --dry-run`  
-create table
+`python manage.py createcachetable --dry-run`   
+create table  
 `python manage.py createcachetable`  
 
-WSL2 environment need to install sqlite
-`sudo apt install sqlite`
+WSL2 environment need to install sqlite  
+`sudo apt install sqlite`  
