@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_celery_beat",
     "app1",
     "app2",
+    "app3",
 ]
 
 MIDDLEWARE = [
@@ -135,4 +137,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "hellologomy@gmail.com"
 
-BROKER_URL = str(os.getenv("REDIS_URI"))
+CELERY_BROKER_URL = os.getenv("REDIS_URI")
+
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "app1.tasks.add",
+        "schedule": 5.0,
+        "args": (10, 10),
+    },
+}
