@@ -1,6 +1,9 @@
 ### Django ###
 *.env
 venv/
+celerybeat-schedule
+db.json
+
 
 *.log
 *.pot
