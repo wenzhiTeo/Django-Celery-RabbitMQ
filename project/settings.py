@@ -138,9 +138,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "hellologomy@gmail.com"
 
-
-CELERY_RESULT_BACKEND = "django-db"
-CELERY_BROKER_URL = os.getenv("REDIS_URI")
+# CELERY_RESULT_BACKEND = "django-db"
+# CELERY_BROKER_URL = os.getenv("REDIS_URI")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_BROKER_URL = os.environ.get("CELERY_BACKEND", "redis://redis:6379/0")
 
 CELERY_BEAT_SCHEDULE = {
     "scheduled_task": {
